@@ -1,0 +1,28 @@
+spring:
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            logger-level: full
+            connect-timeout: 1000
+            read-timeout: 2000
+          service-product: #调用feign服务的名称。 feign客户端（context_id>value)
+            logger-level: full  #日志级别
+            connect-timeout: 3000  #连接超时时间
+            read-timeout: 5000 #读取超时时间
+            retryer: feign.Retryer
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+      eager: true # 取消控制台懒加载
+      web-context-unify: false # 把统一上下文关掉
+
+#           response-interceptor: com.lh.order.interceptor.TestResponseIntercetor
+#           request-interceptors: #指定feign服务 对应拦截器
+#             - com.lh.order.interceptor.XTokenRequestInterceptor
+
+# 开启熔断服务
+feign:
+  sentinel:
+    enabled: true

@@ -1,0 +1,11 @@
+spring:
+  config:
+    import:
+      - nacos:common.properties?group=order
+    activate:
+      on-profile: test
+
+  cloud:
+    nacos:
+      config:
+        namespace: c41cd820-b507-4cf0-b9c8-72fdb43d4dd4

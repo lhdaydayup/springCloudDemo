@@ -1,0 +1,21 @@
+server:
+  port: 8000
+spring:
+  profiles:
+    active: prod  # 激活哪个环境
+    include: feign # application-feign
+  application:
+    name: service-order # 本微服务名称
+  cloud:
+    nacos:
+      server-addr: localhost:8848 #连接nacos服务地址
+      config:
+        import-check:
+          enabled: false
+
+logging:
+  level:
+    com.lh.order.feign: debug
+
+
+

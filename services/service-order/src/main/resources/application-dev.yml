@@ -1,0 +1,13 @@
+spring:
+  config:
+    import:
+      - nacos:common.properties?group=order
+      - nacos:database.properties?group=order
+      - nacos:service-order.properties
+    activate:
+      on-profile: dev
+
+  cloud:
+    nacos:
+      config:
+        namespace: 188784a9-cbba-4b4d-8e0d-77a9c1feea41

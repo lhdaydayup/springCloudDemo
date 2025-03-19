@@ -1,0 +1,35 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: order-route
+          uri: lb://service-order  #lb loadbalance 负载均衡
+          predicates: #断言规则
+            - Path=/api/order/**   #简写
+          filters:
+            - RewritePath=/api/order/?(?<segment>.*),/$\{segment}
+            - AddResponseHeader=X-Response-Temp,1111
+          order: 1  #数字越小约优先
+        - id: produce-route
+          uri: lb://service-produce
+          predicates:
+            - Path=/api/produce/**
+          filters:
+            - RewritePath=/api/produce/?(?<segment>.*),/$\{segment}
+            - AddResponseHeader=X-Response-Temp,2222
+          order: 2
+        - id: test-route
+          uri: http://127.0.0.1:8080/#/login
+          predicates:
+            - name: Path
+              args:
+                patterns: /search
+            - name: Query
+              args:
+                param: q
+                regexp: hahaee
+            - name: Vip
+              args:
+                param: user
+                value: lihuai
+          order: 3
