@@ -31,7 +31,6 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     public LoadBalancerClient loadBalancerClient;
 
-    @Qualifier("productFeignClient")
     @Autowired
     public ProductFeignClient productFeignClient;
 

@@ -2,14 +2,12 @@ package com.lh.order.feign;
 
 import com.lh.order.feign.fallback.ProductFeignClientFallback;
 import com.lh.dto.product.Product;
-import jakarta.annotation.Resource;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 //调用服务名
-@Resource(name = "productFeignClient")
-@FeignClient(value="service-product",fallback = ProductFeignClientFallback.class)
+@FeignClient(name="service-product",value="service-product",fallback = ProductFeignClientFallback.class)
 public interface ProductFeignClient {
     //mvc注解的两套使用逻辑
     //1.标志在Controller上是接受这样的请求
