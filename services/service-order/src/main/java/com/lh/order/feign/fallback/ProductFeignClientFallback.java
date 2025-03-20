@@ -4,6 +4,7 @@ import com.lh.order.feign.ProductFeignClient;
 import com.lh.dto.product.Product;
 import org.springframework.stereotype.Component;
 
+//Test
 @Component // 放到容器中去
 public class ProductFeignClientFallback implements ProductFeignClient {
     @Override
