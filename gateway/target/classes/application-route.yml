@@ -6,17 +6,21 @@ spring:
           uri: lb://service-order  #lb loadbalance 负载均衡
           predicates: #断言规则
             - Path=/api/order/**   #简写
-          filters:
-            - RewritePath=/api/order/?(?<segment>.*),/$\{segment}
-            - AddResponseHeader=X-Response-Temp,1111
+          filters: #过滤器
+            - RewritePath=/api/order/?(?<segment>.*),/$\{segment}  #路径重写
+            - OnceToken=X-Response-Token-uuid,uuid #简写
+            - name: OnceToken  #完整写法
+              args:
+                name: X-Response-Token-jwt
+                value: jwt
           order: 1  #数字越小约优先
         - id: produce-route
           uri: lb://service-produce
           predicates:
             - Path=/api/produce/**
           filters:
-            - RewritePath=/api/produce/?(?<segment>.*),/$\{segment}
-            - AddResponseHeader=X-Response-Temp,2222
+            - RewritePath=/api/produce/?(?<segment>.*),/$\{segment} #路径重写
+            - AddResponseHeader=X-Response-Temp,2222 #添加响应头
           order: 2
         - id: test-route
           uri: http://127.0.0.1:8080/#/login
