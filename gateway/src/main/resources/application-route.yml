@@ -1,6 +1,12 @@
 spring:
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+             allowed-origin-patterns: '*'
+             allowed-methods: '*'
+             allowed-headers: '*'
       routes:
         - id: order-route
           uri: lb://service-order  #lb loadbalance 负载均衡
