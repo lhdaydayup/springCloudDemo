@@ -15,7 +15,7 @@ spring:
 
 logging:
   level:
-    com.lh.order.feign: debug
+    com.lh.order.feign: info # 日志级别
 
 
 
